@@ -34,7 +34,7 @@ A compact C++17 project that demonstrates cache eviction, pointer-safe list mana
                    └────────────────┘
 ```
 
-The list has a circular sentinel, so moving a node or removing the least-recently-used node requires a constant number of pointer updates. A successful `get` and every `put` move the entry to the MRU end. When a new or larger value would exceed the budget, entries are evicted from the LRU end until it fits. Values larger than the full budget are rejected without changing the cache.
+The list tracks its MRU and LRU endpoints directly, using null pointers at the ends, so moving a node or removing the least-recently-used node requires a constant number of pointer updates. A successful `get` and every `put` move the entry to the MRU end. When a new or larger value would exceed the budget, entries are evicted from the LRU end until it fits. Values larger than the full budget are rejected without changing the cache.
 
 ## Memory budget and ownership
 
